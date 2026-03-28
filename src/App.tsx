@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { AppProvider } from "@/context/AppContext";
 import Index from "./pages/Index.tsx";
 import Planning from "./pages/Planning.tsx";
 import Equipe from "./pages/Equipe.tsx";
@@ -17,16 +18,18 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/planning" element={<Planning />} />
-          <Route path="/equipe" element={<Equipe />} />
-          <Route path="/absences" element={<Absences />} />
-          <Route path="/parametres" element={<Parametres />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
+      <AppProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/planning" element={<Planning />} />
+            <Route path="/equipe" element={<Equipe />} />
+            <Route path="/absences" element={<Absences />} />
+            <Route path="/parametres" element={<Parametres />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </AppProvider>
     </TooltipProvider>
   </QueryClientProvider>
 );
